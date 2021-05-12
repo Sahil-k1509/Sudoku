@@ -1,16 +1,16 @@
-board = [
-    ['.', '7', '.',   '.', '.', '.',   '.', '.', '9'],
-    ['5', '1', '.',   '4', '2', '.',   '6', '.', '.'],
-    ['.', '8', '.',   '3', '.', '.',   '7', '.', '.'],
+# board = [
+#     ['.', '7', '.',   '.', '.', '.',   '.', '.', '9'],
+#     ['5', '1', '.',   '4', '2', '.',   '6', '.', '.'],
+#     ['.', '8', '.',   '3', '.', '.',   '7', '.', '.'],
     
-    ['.', '.', '8',   '.', '.', '1',   '3', '7', '.'],
-    ['.', '2', '3',   '.', '8', '.',   '.', '4', '.'],
-    ['4', '.', '.',   '9', '.', '.',   '1', '.', '.'],
+#     ['.', '.', '8',   '.', '.', '1',   '3', '7', '.'],
+#     ['.', '2', '3',   '.', '8', '.',   '.', '4', '.'],
+#     ['4', '.', '.',   '9', '.', '.',   '1', '.', '.'],
     
-    ['9', '6', '2',   '8', '.', '.',   '.', '3', '.'],
-    ['.', '.', '.',   '.', '1', '.',   '4', '.', '.'],
-    ['7', '.', '.',   '2', '.', '3',   '.', '9', '6'],
-]
+#     ['9', '6', '2',   '8', '.', '.',   '.', '3', '.'],
+#     ['.', '.', '.',   '.', '1', '.',   '4', '.', '.'],
+#     ['7', '.', '.',   '2', '.', '3',   '.', '9', '6'],
+# ]
 
 def solve(board):
     # print_board(board)
@@ -22,14 +22,14 @@ def solve(board):
         row, col = empty_cell
         
     for num in range(1, 10):
-        if valid(board, str(num), (row, col)):
-            board[row][col] = str(num)
+        if valid(board, num, (row, col)):
+            board[row][col] = num
             
             if solve(board):
                 # print_board(board)
                 return True
             
-            board[row][col] = '.'
+            board[row][col] = 0
             
     return False
                 
@@ -59,7 +59,7 @@ def find_empty(board):
     n = len(board)
     for i in range(n):
         for j in range(n):
-            if board[i][j] == '.': 
+            if board[i][j] == 0: 
                 return (i, j) # (row, col)
     return (-1, -1)  
             
@@ -72,12 +72,13 @@ def print_board(board):
             print("-----------------------------")
         for j in range(n//3):
             print(" ", *board[i][3*j:3*j+3], end=' ')
+        
             if j != n//3-1: print(" |", end='')
         print()
     print()      
             
             
-print_board(board) 
-solve(board)
-print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
-print_board(board)
+# print_board(board) 
+# solve(board)
+# print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+# print_board(board)
